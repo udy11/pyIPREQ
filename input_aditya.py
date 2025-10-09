@@ -67,13 +67,16 @@ ccoils = [[0.22625,  0.00000, 0.10750,  1.04000, 174, 'TR-1'],      # 0 ###
           [1.08750,  0.37700, 0.02814,  0.01291,   1, 'FFO-T'],     #21
           [1.08750, -0.37700, 0.02834,  0.01335,   1, 'FFO-B'],     #22 ###
           [1.52700,  0.52100, 0.09000,  0.05400, -18, 'BCC-T'],     #23 ### Black Correction
-          [1.52700, -0.52100, 0.09000,  0.05400,  18, 'BCC-B']]     #24 ###
+          [1.52700, -0.52100, 0.09000,  0.05400,  18, 'BCC-B'],     #24 ###
+          [1.33000,  0.54000, 0.01500,  0.04000,   1, 'TF-1'],      #25 ### TF Coil Bus Bar
+          [1.38000,  0.54000, 0.01500,  0.04000,  -1, 'TF-2']]      #26 ###
 cnOT = (0, 1, 2, 3, 4, 5, 6, 7, 8)    # for Iot
 cnVF = (9, 10, 11, 12)    # for Ivf
 cnFF = (15, 16, 19, 20, 21, 22)    # for Iff
 cnBC = (23, 24)    # for Ibc
 cnDT = (13, 17)    # for IDt
 cnDB = (14, 18)    # for IDb
+cnTF = (25, 26)    # for Itf
 ccurrs = np.empty(len(ccoils))
 Iot = 0.0    # OT single-turn current in Ampere
 Ivf = 5.0e3    # VF single-turn current in Ampere
@@ -81,6 +84,7 @@ Iff = 1.0e3    # FFB single-turn current in Ampere
 Ibc = 0.0e3    # BCC single-turn current in Ampere
 IDt = 0.0    # Top-Divertor Coils (MDI-T, ADI-T) single-turn current in Ampere
 IDb = 0.0    # Bottom-Divertor Coils (MDI-B, ADI-B) single-turn current in Ampere
+Itf = 0.0    # TF Bus Bar (TF-1, TF-2) single-turn current in Ampere
 for i in cnOT:
     ccurrs[i] = ccoils[i][4] * Iot
 for i in cnVF:
@@ -93,6 +97,8 @@ for i in cnDT:
     ccurrs[i] = ccoils[i][4] * IDt
 for i in cnDB:
     ccurrs[i] = ccoils[i][4] * IDb
+for i in cnTF:
+    ccurrs[i] = ccoils[i][4] * Itf
 
 # Vertical and Horizontal Instability Parameters (if unsure set them all to 0.0)
 # Currents in feedback coils for respective instabilities are computed as:
