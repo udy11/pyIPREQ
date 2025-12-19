@@ -14,4 +14,4 @@ Critical updates coming soon:
 - A more robust algorithm to find psi surfaces, the current one might fail in some rare cases.
 - A faster computation of Green's functions part using Lackner and Von Hagenow formulation.
 
-For any feedback, query or discussion, please contact me on [email](mailto:udaya_cbscients@yahoo.com) or [Telegram](https://t.me/udy11). If any of my work has been useful to you and you would like to donate cryptocurrencies, please click [here](https://github.com/udy11/udy11/blob/main/Donate_Crypto.md) or [here](https://gitlab.com/udy11/udy11/-/blob/main/Donate_Crypto.md). Thanks for visiting :)
+For any feedback, query or discussion, please contact me on [email](mailto:udaya_cbscients@yahoo.com) or [Telegram](https://t.me/udy11). Developement of this code has been supported by [Institute for Plasma Research](https://www.ipr.res.in/) (India).
