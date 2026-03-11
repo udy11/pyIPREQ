@@ -23,9 +23,9 @@ r1 = np.linspace(0.6, 1.6, nr)    # R-grid, try not to have 0 in array
 z1 = np.linspace(-0.85, 0.85, nz)    # Z-grid
 Rmaj = 1.1    # Major Radius in meter
 J0R, J0Z = Rmaj, 0.0    # center of guess current density profile at first iteration
-alpha_p, beta_j, alpha_f = 0.7, 0.1, 1.7    # profile parameters for p' and FF'
-pp_fx =  lambda s: (np.exp(-alpha_p * (1 - s)) - np.exp(-alpha_p)) / (np.exp(-alpha_p) - 1)    # profile of p'
-ffp_fx = lambda s: (np.exp(-alpha_f * (1 - s)) - np.exp(-alpha_f)) / (np.exp(-alpha_f) - 1)    # profile of FF'
+alpha_p, beta_j, alpha_f = 0.7, 0.5, 1.7    # profile parameters for p' and FF'
+pp_fx =  lambda s: beta_j * (np.exp(-alpha_p * (1 - s)) - np.exp(-alpha_p)) / (np.exp(-alpha_p) - 1)    # profile of p'
+ffp_fx = lambda s: (1.0 - beta_j) * (np.exp(-alpha_f * (1 - s)) - np.exp(-alpha_f)) / (np.exp(-alpha_f) - 1)    # profile of FF'
 Bphi0 = 1.5    # toroidal magnetic field at (Rmaj,0) in Tesla (only used in computation of other parameters like q, β, etc.)
 Ip = 1.0e5    # plasma current in Ampere
 drf, dzf = 0.01, 0.01    # filament sizes in which to divide coils (in m)
@@ -40,9 +40,9 @@ thlims = np.linspace(0, 2.0*np.pi, 33)    # only used to define rzlims
 rzlims = np.transpose(np.array([Rmaj + Rmin*np.cos(thlims), Rmin*np.sin(thlims)]))    # last point and first point must be same; points must be sequential, numpy array and in format [[r0,z0],[r1,z1],...,[r0,z0]]
 
 #           R       Z       dR     dZ   turns name    (turns and name are unused in main code)
-ccoils = [[2.500,  1.3810, 0.117, 0.095, -24, 'VF_T'],    # 0    Ivf
-          [2.500, -1.3810, 0.117, 0.095, -24, 'VF_B'],    # 1
-          [0.252,  0.0000, 0.145, 2.580, 678, 'Tr1'],    # 2    Iot
+ccoils = [[2.500,  1.3810, 0.117, 0.095, -24, 'VF_T'],     # 0    Ivf
+          [2.500, -1.3810, 0.117, 0.095, -24, 'VF_B'],     # 1
+          [0.252,  0.0000, 0.145, 2.580, 678, 'Tr1'],      # 2    Iot
           [0.591,  1.4800, 0.211, 0.102,  40, 'Tr2_T'],    # 3
           [0.591, -1.4800, 0.208, 0.102,  40, 'Tr2_B'],    # 4
           [2.451,  1.3040, 0.070, 0.030,   3, 'Tr3_T'],    # 5
@@ -64,7 +64,7 @@ ccoils = [[2.500,  1.3810, 0.117, 0.095, -24, 'VF_T'],    # 0    Ivf
 ccurrs = np.empty(len(ccoils))
 Iot = 0.0    # OT single-turn current in Ampere
 Ivf = 3.25e3    # VF single-turn current in Ampere
-Ipfs = [0.375e3,  # PF1, all values are per turn
+Ipfs = [0.375e3,  # PF1, all values are Ampere per turn
         1.5e3,    # PF2
         0.0e3,    # PF3
         0.0e3,    # PF4
