@@ -14,4 +14,6 @@ Critical updates coming soon:
 - A more robust algorithm to find psi surfaces, the current one might fail in some rare cases.
 - A faster computation of Green's functions part using Lackner and Von Hagenow formulation.
 
+If output G-EQDSK file does not work with GENRAY code, reduce the length of the header line to 61 characters by removing any non-essential characters (like in-between spaces).
+
 For any feedback, query or discussion, please contact me on [email](mailto:udaya_cbscients@yahoo.com) or [Telegram](https://t.me/udy11). Developement of this code has been supported by [Institute for Plasma Research](https://www.ipr.res.in/) (India).
